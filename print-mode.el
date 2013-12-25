@@ -1,5 +1,3 @@
-(require 'easymenu)
-
 (setq counter 0)
 
 (let (mode (format "%" major-mode))
