@@ -14,16 +14,25 @@
 ;;     (setq print-mode-statement "// No valid mode detected %d\n")
 ;;     ))
 
-;; (defun print-mode-create-statement (print-statement)
-;;   let (
+(defun print-mode-create-statement (print-statement)
+    (format "\n%s \n" (format print-statement "\nDebug Message: %d \n")))
+
+;; (defun print-mode-set-statement ()
+;;   (if (equal mode "emacs-lisp-mode")
+;;       (setq print-mode-statement "\n (print \"\\n %d \\n\") \n")
+;;     (if (equal mode "c-mode")
+;;         (setq print-statement "\nprintf(\"\\n %d \\n\");")
+;;       (if (equal mode "python-mode")
+;;           (setq print-statement "\nprint('\\n %d \\n')")
+;;         ("\n// No mode recognized")))))
 
 (defun print-mode-set-statement ()
   (if (equal mode "emacs-lisp-mode")
-      (setq print-mode-statement "\n (print \"\\n %d \\n\") \n")
+      (setq print-mode-statement (print-mode-create-statement "(print \"%s\")"))
     (if (equal mode "c-mode")
-        (setq print-statement "\nprintf(\"\\n %d \\n\");")
+        (setq print-statement (print-mode-create-statement "printf(\"%s\");"))
       (if (equal mode "python-mode")
-          (setq print-statement "\nprint('\\n %d \\n')")
+          (setq print-statement (print-mode-create-statement "print('%s')"))
         ("\n// No mode recognized")))))
 
 (print-mode-set-statement)
