@@ -7,21 +7,24 @@
 (setq counter 0)
 (setq mode (format "%s" major-mode))
 (define-key print-mode-keymap (kbd "C-c i") 'print-mode-insert-statement)
-(setq print-mode-statement "a")
 
 ;; (defun print-mode-set-statement ()
 ;;   (if (equal mode "emacs-lisp-mode")
 ;;       (setq print-mode-statement "\n(print %d)\n")
 ;;     (setq print-mode-statement "// No valid mode detected %d\n")
 ;;     ))
+
+;; (defun print-mode-create-statement (print-statement)
+;;   let (
+
 (defun print-mode-set-statement ()
   (if (equal mode "emacs-lisp-mode")
-      (setq print-mode-statement "\n(print %d)\n")
+      (setq print-mode-statement "\n (print \"\\n %d \\n\") \n")
     (if (equal mode "c-mode")
-        (setq print-statement "\nprintf(\"%d\n\");")
+        (setq print-statement "\nprintf(\"\\n %d \\n\");")
       (if (equal mode "python-mode")
-          (setq print-statement "\nprint(%d)")
-        ("\n// No mode recognized"))))
+          (setq print-statement "\nprint('\\n %d \\n')")
+        ("\n// No mode recognized")))))
 
 (print-mode-set-statement)
 
@@ -39,3 +42,14 @@
     (setq counter (+ 1 counter))))
 
 (provide 'print-mode)
+
+
+
+
+
+
+
+
+
+
+
