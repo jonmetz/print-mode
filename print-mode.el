@@ -9,7 +9,8 @@
 (define-key print-mode-keymap (kbd "C-c i") 'print-mode-insert-statement)
 
 (defun print-mode-create-statement (print-statement)
-    (format "\n%s \n" (format print-statement "\nDebug Message: %d \n")))
+  (format "\n%s \n" (format print-statement "\nDebug Message: %d \n")))
+
 (defun print-mode-set-statement ()
   (if (equal mode "emacs-lisp-mode")
       (setq print-mode-statement (print-mode-create-statement "(print \"%s\")"))
@@ -24,20 +25,9 @@
 
 (defun print-mode-insert-statement ()
   (interactive)
-  (progn 
+  (progn
     (insert (format print-mode-statement counter))
     (message (format "print statement inserted on %s" (what-line)))
     (setq counter (+ 1 counter))))
 
 (provide 'print-mode)
-
-
-
-
-
-
-
-
-
-
-
